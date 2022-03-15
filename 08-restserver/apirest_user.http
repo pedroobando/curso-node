@@ -1,0 +1,28 @@
+
+### Solicitar nuevo usuario
+GET http://localhost:8080/api/users?page=2&orderby=desc
+
+### Insertar nuevo usuario
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "name":"Tomas",
+   "email": "pedroo2ssbsa@ndo1211ail.com",
+   "password":"1234567",
+   "roll":"USER_ROLL",
+   "google":true
+}  
+
+### Cambio de usuario
+PUT http://localhost:8080/api/users/622fb53ff57ba0b9bd26707f
+Content-Type: application/json
+
+{
+  "name": "Pedro Eduardo",
+  "email": "pedroobando22@hotmail.com",
+  "password":"1234567",
+  "roll":"USER_ROLE",
+  "google":false
+}
+

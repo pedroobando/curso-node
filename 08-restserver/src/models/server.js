@@ -1,6 +1,7 @@
 const express = require('express');
 // const { json, urlencoded } = require('express');
 const cors = require('cors');
+const connectdb = require('../database/connectdb');
 
 class Server {
   constructor() {
@@ -8,9 +9,16 @@ class Server {
     // PUERTO DEL SERVIDOR
     this.port = process.env.PORT || 8080;
     this.usersPath = '/api/users';
+    this.rollPath = '/api/roll';
 
+    this.conectarDb();
     this.middlewares();
     this.routes();
+  }
+
+  conectarDb() {
+    // conectado a mongodb
+    connectdb();
   }
 
   middlewares() {
@@ -25,7 +33,8 @@ class Server {
   }
 
   routes() {
-    this.app.use(this.usersPath, require('../routes/users'));
+    this.app.use(this.usersPath, require('../routes/user.route'));
+    this.app.use(this.rollPath, require('../routes/roll.route'));
   }
 
   listen() {

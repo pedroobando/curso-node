@@ -1,0 +1,26 @@
+
+### Solicitar nuevo usuario
+GET http://localhost:8080/api/roll?page=2&orderby=desc
+
+### Insertar nuevo usuario
+POST http://localhost:8080/api/roll
+Content-Type: application/json
+
+{
+   "roll": "user_roll",
+   "password":"1234567",
+   "google":true
+}  
+
+### Cambio de usuario
+PUT http://localhost:8080/api/users/622fb53ff57ba0b9bd26707f
+Content-Type: application/json
+
+{
+  "name": "Pedro Eduardo",
+  "email": "pedroobando22@hotmail.com",
+  "password":"1234567",
+  "roll":"USER_ROLE",
+  "google":false
+}
+
