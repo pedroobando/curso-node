@@ -11,4 +11,9 @@ const existEmail = async (email = '') => {
   if (findUser) throw new Error(`El email ${email} ya esta registrado`);
 };
 
-module.exports = { isRollValid, emailExist: existEmail };
+const isExistUserById = async (id) => {
+  const findUser = await User.findById(id);
+  if (!findUser) throw new Error(`El usuario no esta registrado`);
+};
+
+module.exports = { isRollValid, existEmail, isExistUserById };
