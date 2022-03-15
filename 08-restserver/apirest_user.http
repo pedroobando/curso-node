@@ -2,6 +2,11 @@
 ### Solicitar nuevo usuario
 GET http://localhost:8080/api/users?page=2&orderby=desc
 
+
+### Generacion de  nuevos usuario
+GET http://localhost:8080/api/users/gen?userTotal=100
+
+
 ### Insertar nuevo usuario
 POST http://localhost:8080/api/users
 Content-Type: application/json
@@ -15,14 +20,29 @@ Content-Type: application/json
 }  
 
 ### Cambio de usuario
-PUT http://localhost:8080/api/users/622fb53ff57ba0b9bd26707f
+PUT http://localhost:8080/api/users/122fb53ff57ba0b9bd26707f
 Content-Type: application/json
 
 {
   "name": "Pedro Eduardo",
   "email": "pedroobando22@hotmail.com",
-  "password":"1234567",
+  "password":"1234567www",
   "roll":"USER_ROLE",
+  "google":false
+}
+
+
+
+
+### Cambio de password usuario
+PUT http://localhost:8080/api/users/password/622fb53ff57ba0b9bd26707f
+Content-Type: application/json
+
+{
+  "name": "Pedro Eduard2323232o",
+  "email": "pedroobando22@hotmail.com",
+  "password":"9999999",
+  "roll":"USER_ROLE2323",
   "google":false
 }
 
