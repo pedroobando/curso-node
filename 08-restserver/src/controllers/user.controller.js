@@ -1,11 +1,26 @@
 const { request, response } = require('express');
 const User = require('../database/models/user');
-const { cifrate } = require('../tools/cifrate');
+const { cifrate } = require('../helpers/cifrate');
 const { faker } = require('@faker-js/faker');
+const { eatGetCollecc, paginateRange } = require('../helpers/db-paginate');
 
-const userGet = (req = request, res = response) => {
+const userGet = async (req = request, res = response) => {
   const { page = 1, limit = 10, orderby = 'asc' } = req.query;
-  res.json({ msg: 'get api - controllers', query: { page: parseInt(page, 10), limit, orderby } });
+
+  try {
+    condition = { active: true };
+    const { toSkip, tolimit } = eatGetCollecc(page, limit);
+    const resolv = await Promise.all([
+      User.countDocuments(condition),
+      User.find(condition).skip(toSkip).limit(tolimit),
+    ]);
+    const [totalItem, users] = resolv;
+    const paginate = paginateRange(page, tolimit, totalItem);
+
+    res.status(200).json({ err: null, data: users, paginate });
+  } catch (error) {
+    res.status(500).json({ err: 'Problemas mostrando usuario', error: error.message, user: null });
+  }
 };
 
 const userPost = async (req = request, res = response) => {
@@ -61,12 +76,16 @@ const userChangePassword = async (req = request, res = response) => {
   }
 };
 
-const userDelete = (req = request, res = response) => {
-  res.json({ msg: 'delete api - controllers' });
-};
-
-const userPatch = (req = request, res = response) => {
-  res.json({ msg: 'patch api - controllers' });
+const userDelete = async (req = request, res = response) => {
+  const { id } = req.params;
+  try {
+    const updated_at = Date.now();
+    const active = false;
+    const deleteUser = await User.findByIdAndUpdate(id, { active, updated_at }, { new: true });
+    res.status(200).json({ err: null, user: deleteUser });
+  } catch (error) {
+    res.status(500).json({ err: 'Problema eliminando usuario', error: error.message, user: null });
+  }
 };
 
 const userGen = async (req = request, res = response) => {
@@ -98,4 +117,4 @@ const userGen = async (req = request, res = response) => {
   }
 };
 
-module.exports = { userGet, userDelete, userPatch, userPost, userPut, userChangePassword, userGen };
+module.exports = { userGet, userDelete, userPost, userPut, userChangePassword, userGen };

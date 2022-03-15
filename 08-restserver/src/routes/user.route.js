@@ -5,7 +5,6 @@ const {
   userGet,
   userPut,
   userDelete,
-  userPatch,
   userPost,
   userChangePassword,
   userGen,
@@ -56,12 +55,15 @@ router.put(
       .isString()
       .isLength({ min: 5 }),
   ],
-
   fieldValidate,
   userChangePassword,
 );
 
-router.delete('/:id', userDelete);
-router.patch('/', userPatch);
+router.delete(
+  '/:id',
+  [param('id', 'No es un id valido').isMongoId(), param('id').custom(isExistUserById)],
+  fieldValidate,
+  userDelete,
+);
 
 module.exports = router;

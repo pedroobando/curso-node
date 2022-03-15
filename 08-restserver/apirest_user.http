@@ -1,6 +1,6 @@
 
 ### Solicitar nuevo usuario
-GET http://localhost:8080/api/users?page=2&orderby=desc
+GET http://localhost:8080/api/users?page=1&limit=10
 
 
 ### Generacion de  nuevos usuario
@@ -20,7 +20,7 @@ Content-Type: application/json
 }  
 
 ### Cambio de usuario
-PUT http://localhost:8080/api/users/122fb53ff57ba0b9bd26707f
+PUT http://localhost:8080/api/users/622fdce94620360a21059518
 Content-Type: application/json
 
 {
@@ -30,9 +30,6 @@ Content-Type: application/json
   "roll":"USER_ROLE",
   "google":false
 }
-
-
-
 
 ### Cambio de password usuario
 PUT http://localhost:8080/api/users/password/622fb53ff57ba0b9bd26707f
@@ -46,3 +43,6 @@ Content-Type: application/json
   "google":false
 }
 
+### Borrar usuario
+DELETE http://localhost:8080/api/users/62307e9dafb49efe198a9a69
+Content-Type: application/json
