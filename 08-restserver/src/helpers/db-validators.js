@@ -6,9 +6,9 @@ const isRollValid = async (roll = '') => {
   if (!rollExist) throw new Error(`El roll ${roll} no esta registrado en DB`);
 };
 
-const existEmail = async (email = '') => {
+const isExistEmail = async (email = '') => {
   const findUser = await User.findOne({ email });
-  if (findUser) throw new Error(`El email ${email} ya esta registrado`);
+  if (findUser) throw new Error(`El roll ${email} esta registrado en DB`);
 };
 
 const isExistUserById = async (id) => {
@@ -16,4 +16,4 @@ const isExistUserById = async (id) => {
   if (!findUser) throw new Error(`El usuario no esta registrado`);
 };
 
-module.exports = { isRollValid, existEmail, isExistUserById };
+module.exports = { isRollValid, isExistEmail, isExistUserById };

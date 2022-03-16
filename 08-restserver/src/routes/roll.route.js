@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { body } = require('express-validator');
 const { rollGet, rollPost, rollPut, rollDelete } = require('../controllers/roll.controller');
 
-const { fieldValidate } = require('../middlewares');
+const { fieldValidate } = require('../middlewares/validate-field');
 
 router = Router();
 

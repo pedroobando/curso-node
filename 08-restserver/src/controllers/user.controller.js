@@ -24,14 +24,13 @@ const userGet = async (req = request, res = response) => {
 };
 
 const userPost = async (req = request, res = response) => {
-  const { password, email } = req.body;
+  const { password, active, ...restProps } = req.body;
   const body = req.body;
 
   try {
-    body.created_at = Date.now();
-    body.updated_at = Date.now();
-    body.password = await cifrate(password);
-    const createUser = new User(body);
+    restProps.password = await cifrate(password);
+    restProps.active = true;
+    const createUser = new User(restProps);
     await createUser.validate();
     await createUser.save();
 
@@ -78,6 +77,8 @@ const userChangePassword = async (req = request, res = response) => {
 
 const userDelete = async (req = request, res = response) => {
   const { id } = req.params;
+  console.log(req.uid);
+
   try {
     const updated_at = Date.now();
     const active = false;

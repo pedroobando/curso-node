@@ -10,6 +10,7 @@ class Server {
     this.port = process.env.PORT || 8080;
     this.usersPath = '/api/users';
     this.rollPath = '/api/roll';
+    this.authPath = '/api/auth';
 
     this.conectarDb();
     this.middlewares();
@@ -33,6 +34,7 @@ class Server {
   }
 
   routes() {
+    this.app.use(this.authPath, require('../routes/auth.route'));
     this.app.use(this.usersPath, require('../routes/user.route'));
     this.app.use(this.rollPath, require('../routes/roll.route'));
   }

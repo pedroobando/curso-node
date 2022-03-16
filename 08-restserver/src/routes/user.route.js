@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const { body, param, query } = require('express-validator');
-const { fieldValidate } = require('../middlewares');
+
+const { validateJWT } = require('../middlewares/validate-jwt');
+
 const {
   userGet,
   userPut,
@@ -9,7 +11,9 @@ const {
   userChangePassword,
   userGen,
 } = require('../controllers/user.controller');
-const { isRollValid, emailExist, isExistUserById } = require('../helpers/db-validators');
+
+const { fieldValidate } = require('../middlewares/validate-field');
+const { isRollValid, isExistEmail, isExistUserById } = require('../helpers/db-validators');
 
 router = Router();
 
@@ -24,7 +28,8 @@ router.post(
   '/',
   [
     body('name', 'El nombre es obligatorio').not().isEmpty(),
-    body('email', 'Correo o email no es valido').isEmail().custom(emailExist),
+    body('email', 'Correo o email no es valido').isEmail(),
+    body('email').custom(isExistEmail),
     body('password', 'El password es requerido y mayor que 4 caracteres')
       .isString()
       .isLength({ min: 5 }),
@@ -61,6 +66,7 @@ router.put(
 
 router.delete(
   '/:id',
+  validateJWT,
   [param('id', 'No es un id valido').isMongoId(), param('id').custom(isExistUserById)],
   fieldValidate,
   userDelete,

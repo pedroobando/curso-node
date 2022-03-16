@@ -12,11 +12,11 @@ POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-  "name":"Tomas",
-   "email": "pedroo2ssbsa@ndo1211ail.com",
-   "password":"1234567",
-   "roll":"USER_ROLL",
-   "google":true
+  "name":"Carlos Obando",
+  "email": "carlos@gmail.com",
+  "password":"1234567",
+  "roll":"USER_ROLL",
+  "google":true
 }  
 
 ### Cambio de usuario
@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ### Cambio de password usuario
-PUT http://localhost:8080/api/users/password/622fb53ff57ba0b9bd26707f
+PUT http://localhost:8080/api/users/password/623111aa9be5385ae2b87669
 Content-Type: application/json
 
 {
@@ -44,5 +44,7 @@ Content-Type: application/json
 }
 
 ### Borrar usuario
-DELETE http://localhost:8080/api/users/62307e9dafb49efe198a9a69
+DELETE http://localhost:8080/api/users/623111aa9be5385ae2b87669
 Content-Type: application/json
+Authorization: sdsdsd eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MjMxMTFhYTliZTUzODVhZTJiODc2NjkiLCJpYXQiOjE2NDczOTMwMDAsImV4cCI6MTY0NzQxNDYwMH0.zQcBfQBsusx9qXM7t9GhRI7xaHF3gBFY3gQ_4rZ1uSQ
+
