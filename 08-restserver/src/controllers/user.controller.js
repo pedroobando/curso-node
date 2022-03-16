@@ -77,8 +77,6 @@ const userChangePassword = async (req = request, res = response) => {
 
 const userDelete = async (req = request, res = response) => {
   const { id } = req.params;
-  console.log(req.uid);
-
   try {
     const updated_at = Date.now();
     const active = false;

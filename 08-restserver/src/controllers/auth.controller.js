@@ -7,7 +7,7 @@ const login = async (req = request, res = response) => {
   const { email, password } = req.body;
   const errMsg = 'Error en usuario / password';
   try {
-    const existUser = await User.findOne({ email, active: true });
+    const existUser = await User.findOne({ email: email.toLowerCase(), active: true });
     if (!existUser) return res.status(403).json({ err: `${errMsg} - email` });
 
     const validPassword = await cifrateVerify(password, existUser.password);

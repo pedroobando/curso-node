@@ -46,5 +46,5 @@ Content-Type: application/json
 ### Borrar usuario
 DELETE http://localhost:8080/api/users/623111aa9be5385ae2b87669
 Content-Type: application/json
-Authorization: sdsdsd eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MjMxMTFhYTliZTUzODVhZTJiODc2NjkiLCJpYXQiOjE2NDczOTMwMDAsImV4cCI6MTY0NzQxNDYwMH0.zQcBfQBsusx9qXM7t9GhRI7xaHF3gBFY3gQ_4rZ1uSQ
+authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MjMxMWVmZGYxZWRjYTMxOWE0MDY2Y2EiLCJpYXQiOjE2NDc0NDkyNzQsImV4cCI6MTY0NzQ3MDg3NH0.UZ04Kztktq-xzjP1zTCvaUUTHa1HGmPw5HWqEdoXJ1U
 

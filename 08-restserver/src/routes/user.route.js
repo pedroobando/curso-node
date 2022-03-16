@@ -1,7 +1,9 @@
 const { Router } = require('express');
 const { body, param, query } = require('express-validator');
 
-const { validateJWT } = require('../middlewares/validate-jwt');
+const { validateJWT, fieldValidate, isAdminRoll, isHaveOnlyRoll } = require('../middlewares');
+
+const { isRollValid, isExistEmail, isExistUserById } = require('../helpers/db-validators');
 
 const {
   userGet,
@@ -11,9 +13,6 @@ const {
   userChangePassword,
   userGen,
 } = require('../controllers/user.controller');
-
-const { fieldValidate } = require('../middlewares/validate-field');
-const { isRollValid, isExistEmail, isExistUserById } = require('../helpers/db-validators');
 
 router = Router();
 
@@ -67,7 +66,9 @@ router.put(
 router.delete(
   '/:id',
   validateJWT,
-  [param('id', 'No es un id valido').isMongoId(), param('id').custom(isExistUserById)],
+  // isAdminRoll,
+  isHaveOnlyRoll(['ADMIN_ROLL', 'GAME_ROLL']),
+  [(param('id', 'No es un id valido').isMongoId(), param('id').custom(isExistUserById))],
   fieldValidate,
   userDelete,
 );
